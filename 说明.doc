@@ -1,0 +1,68 @@
+题目：  
+    core文件自动化检查 
+
+需求说明：	    指定路径下查找出所有的dump文件，并输出文件生成的时间，路径
+
+
+Python的GUI编程Tkinter、wxPython、Jython、PyQt5
+
+Tkinter：
+    由于 Tkinter 是内置到 python 的安装包中、只要安装好 Python 之后就能 
+import Tkinter 库、而且 IDLE 也是用 Tkinter 编写而成、对于简单的图形界
+面 Tkinter 还是能应付自如。
+
+PyQt5:
+（1）基于高性能的Qt的GUI控件集。（2）能够跨平台运行在Linux、Window和Mac OS系统上。（3）使用信号槽机制进行通信。（4）对Qt库进行完全封装。（5）可以使用成熟的IDE进行界面设计，并自动生成可执行的Python代码。（6）提供一整套种类齐全的窗口控件。
+
+
+最终确定使用
+
+开发环境：
+    Python 3.7
+
+开发工具：
+    Pycharm
+    PyQt5
+    PyQt5-tools
+
+
+
+
+
+
+
+Pycharm设置PyQt5相关工具方法： https://www.jianshu.com/p/5b063c5745d0
+
+
+进行UI界面布局，编辑控件属性
+
+Qt Designer设计保存的文件为.ui格式的文件。
+
+其实质是一个XML文件。ui文件中存放了在主窗口中的一切控件的相关属性。使用XML文件来存储UI文件，具有高可读性和移植性，我们可以方便地将.ui文件转换到.py文件
+
+
+生成的ui转为py文件后不可以直接运行，加上以下代码就可以显示窗口了
+
+if __name__ == '__main__': 
+app = QApplication(sys.argv) 
+MainWindow = QMainWindow()  
+ui = Ui_MainWindow()  
+ui.setupUi(MainWindow)
+MainWindow.show() 
+sys.exit(app.exec_())
+
+
+
+后面就需要将每个控件对应的作用函数方法绑定
+
+
+
+由于工具开发环境为Python3.7 ，且需要几个三方库。
+后续遇到的问题为工具无法在只有Python2.7环境的PC上运行
+思考解决这个问题，将工具进行打包。
+使用pyinstaller将工程打包为exe
+pyinstaller -FwD app.py
+(参考 http://c.biancheng.net/view/2690.html)
+
+由此工具可以直接进行双击启动,不需要python固定环境。
+
